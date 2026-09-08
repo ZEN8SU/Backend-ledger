@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 const userSchema = new Schema(
   {
     email: {
@@ -20,7 +21,6 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "password is required for creating an account"],
-      select: false,
       minlength: [6, " password should contain more than 6 character"],
     },
   },
