@@ -9,7 +9,9 @@ app.use(cookieParser());
 
 
 import userRouter from './routes/user.route.js'
+import accountRouter from './routes/account.route.js'
 app.use('/api/v1/users',userRouter);
+app.use('/api/v1/accounts',accountRouter);
 
 
 

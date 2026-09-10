@@ -5,21 +5,22 @@ import { User } from "../models/user.model.js";
 import { sendRegistrationEmail } from "../utils/email.js";
 import jwt from "jsonwebtoken";
 
-const generateAccessAndRefreshToken = async(userId) =>{
-
- try {
-   const user = await User.findById(userId);
+const generateAccessAndRefreshToken = async (userId) => {
+  try {
+    const user = await User.findById(userId);
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
-  
+
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
     return { refreshToken, accessToken };
- } catch (error) {
-  throw new ApiError(500 , "something went wrong while generating refresh and access token")
- }
-
-}
+  } catch (error) {
+    throw new ApiError(
+      500,
+      "something went wrong while generating refresh and access token"
+    );
+  }
+};
 
 const userRegister = asyncHandler(async (req, res) => {
   const { username, name, password, email } = req.body;
@@ -50,12 +51,11 @@ const userRegister = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
 
-  await sendRegistrationEmail(user.email , user.name);
-  
+  await sendRegistrationEmail(user.email, user.name);
+
   return res
     .status(201)
     .json(new ApiResponse(201, checkUser, "registration successful"));
-
 });
 
 const userLogin = asyncHandler(async (req, res) => {
@@ -92,4 +92,4 @@ const userLogin = asyncHandler(async (req, res) => {
       )
     );
 });
-export { userRegister , userLogin};
+export { userRegister, userLogin };
