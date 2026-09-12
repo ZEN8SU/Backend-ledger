@@ -28,7 +28,7 @@ const createInitialFunds = asyncHandler(async (req, res) => {
     throw new ApiError(404, "Invalid Account");
   }
 
-  if (!toUserAccount.status !== "ACTIVE") {
+  if (toUserAccount.status !== "ACTIVE") {
     throw new ApiError(400, "Account is not active");
   }
 
@@ -58,7 +58,7 @@ const createInitialFunds = asyncHandler(async (req, res) => {
       );
   }
 
-  if (fromUserAccount.currency !== toUserAccount) {
+  if (fromUserAccount.currency !== toUserAccount.currency) {
     throw new ApiError(
       400,
       "fromAccount and toAccount have diff-diff curencies"
@@ -78,7 +78,7 @@ const createInitialFunds = asyncHandler(async (req, res) => {
           currency: toUserAccount.currency,
           status: "PENDING",
           idempotencyKey,
-          initiatedBy: req.user?._id,
+          initiatedBy: systemUser._id,
           isSystemTransaction: true,
         },
       ],
