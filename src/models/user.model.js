@@ -23,6 +23,16 @@ const userSchema = new Schema(
       required: [true, "password is required for creating an account"],
       minlength: [6, " password should contain more than 6 character"],
     },
+    systemUser :{
+      type : Boolean ,
+      default : false,
+      immutable : true,
+      select : false
+    },
+    refreshToken :{
+      type : String ,
+      select : false
+    }
   },
   { timestamps: true }
 );
