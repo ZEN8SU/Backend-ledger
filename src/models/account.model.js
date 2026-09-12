@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const accountSchema = new Schema(
   {
     user: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Account must be associated with user"],
       index: true,

@@ -27,7 +27,7 @@ const transactionSchema = new Schema(
       required: [true, "Transaction must be associated with a to account"],
       min: [0, "Transaction amount cannot be negative"],
     },
-    idemopotencyKey: {
+    idempotencyKey: {
       type: String,
       required: [
         true,
@@ -42,7 +42,7 @@ const transactionSchema = new Schema(
       uppercase: true,
     },
     initiatedBy: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
