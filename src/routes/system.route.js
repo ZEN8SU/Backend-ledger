@@ -1,6 +1,9 @@
-import {Router} from 'express'
-import { createInitialFunds , promoteToSystemUser } from '../controllers/system.controller.js'
-import { verifySystemUser } from '../middlewares/authSystem.middleware.js'
+import { Router } from "express";
+import {
+  createInitialFunds,
+  promoteToSystemUser,
+} from "../controllers/system.controller.js";
+import { verifySystemUser } from "../middlewares/authSystem.middleware.js";
 
 const router = Router();
 
