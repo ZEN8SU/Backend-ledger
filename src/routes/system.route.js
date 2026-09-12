@@ -6,7 +6,7 @@ const router = Router();
 
 router.route(verifySystemUser);
 
-router.route("/initial-funds").post(createInitialFunds);
+router.route("/system/initial-funds").post(createInitialFunds);
 router.route("/promote").post(promoteToSystemUser);
 
 export default router;
